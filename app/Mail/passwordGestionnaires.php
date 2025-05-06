@@ -13,14 +13,19 @@ class passwordGestionnaires extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $email;
+    private $password;
+    private $name;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($name,$email,$password)
     {
-        //
+        $this->email = $email;
+        $this->password = $password;
+        $this->name = $name;
     }
-
     /**
      * Get the message envelope.
      */
@@ -37,7 +42,12 @@ class passwordGestionnaires extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'utilisateurs.gestionnairesMail',
+            with: [
+                'email' => $this->email,
+                'password' => $this->password,
+                'name' => $this->name,
+            ],
         );
     }
 

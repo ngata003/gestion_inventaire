@@ -7,6 +7,7 @@ use App\Models\Produit;
 use App\Models\Vente;
 use App\Models\Ventes_details;
 use Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Session;

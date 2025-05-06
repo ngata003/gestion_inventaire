@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title> Modifier boutique </title>
+    <title> CAMES STORE </title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('css/fontawesome.min.css')}}" />
     <link rel="stylesheet" href="{{asset('jquery-ui-datepicker/jquery-ui.min.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/vente.css')}}">
     <link rel="stylesheet" href="{{asset('css/templatemo-style.css')}}">
   </head>
 
@@ -119,7 +120,7 @@
                       </li>
                       <li class="nav-item dropdown">
                         <a
-                          class="nav-link active dropdown-toggle"
+                          class="nav-link  dropdown-toggle"
                           href="#"
                           id="navbarDropdown"
                           role="button"
@@ -135,7 +136,7 @@
                         </div>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link " href="statistiques">
+                        <a class="nav-link active" href="statistiques">
                             <i class="fas fa-chart-line"></i>
                             statistiques
                         </a>
@@ -145,149 +146,66 @@
                 @endif
             @endauth
         </div>
-    </nav>
-    <div class="container tm-mt-big tm-mb-big">
-      <div class="row">
-        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
-          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+        </nav>
+        <div class="container">
             <div class="row">
-              <div class="col-12">
-                <h2 class="tm-block-title d-inline-block"> Modifier Boutique </h2>
-              </div>
+                <div class="col">
+                    <?php $user = Auth::user(); ?>
+                    <p class="text-white mt-5 mb-5">Welcome back, <b> {{$user->name}}</b></p>
+                </div>
             </div>
-            <div class="row tm-edit-product-row">
-              <div class="col-xl-6 col-lg-6 col-md-12">
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <strong>Oups !</strong> Veuillez corriger les erreurs ci-dessous :
-                    <ul>
-                        @foreach ($errors->all() as $message)
-                            <li>{{ $message }}</li>
+            <div class="row tm-content-row">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block">
+                        <h2 class="tm-block-title"> Meilleurs clients </h2>
+                        @foreach ($topClients as $client)
+                            <li style="color: white">{{ $client->nom_client }} - {{ number_format($client->total, 0, ',', ' ') }} FCFA</li>
                         @endforeach
-                    </ul>
+                    </div>
                 </div>
-                @endif
-                @if (session('updateBoutique'))
-                <p style="color:orange"> {{session('updateBoutique')}}</p>
-                @endif
-                <form action="/boutique_edit" method="post" enctype="multipart/form-data" class="tm-edit-product-form">
-                    @csrf
-                  <div class="form-group mb-3">
-                    <label
-                      for="name"
-                      > Nom Boutique
-                    </label>
-                    <input
-                      id="nom_boutique"
-                      name="nom_boutique"
-                      type="text"
-                      value="{{$boutique_active->nom_boutique}}"
-                      class="form-control validate"
-                    />
-                  </div>
-                  <div class="form-group mb-3">
-                    <label
-                      for="name"
-                      > Email Boutique
-                    </label>
-                    <input
-                      id="email_boutique"
-                      name="email_boutique"
-                      type="text"
-                      value="{{$boutique_active->email_boutique}}"
-                      class="form-control validate"
-                    />
-                  </div>
-
-                  <div class="form-group mb-3">
-                    <label
-                      for="name"
-                      > Site web
-                    </label>
-                    <input
-                      id="site_web_boutique"
-                      name="site_web_boutique"
-                      type="text"
-                      value="{{$boutique_active->site_web_boutique}}"
-                      class="form-control validate"
-                    />
-                  </div>
-
-                  <div class="row">
-                      <div class="form-group mb-3 col-xs-12 col-sm-6">
-                          <label
-                            for="contact_boutique"
-                            > contact boutique
-                          </label>
-                          <input
-                            id="contact_boutique"
-                            name="contact_boutique"
-                            type="text"
-                            value="{{$boutique_active->contact_boutique}}"
-                            class="form-control validate"
-                          />
-                        </div>
-                        <div class="form-group mb-3 col-xs-12 col-sm-6">
-                          <label
-                            for="stock"
-                            > localisation boutique
-                          </label>
-                          <input
-                            id="localisation_boutique"
-                            name="localisation_boutique"
-                            type="text"
-                            value="{{$boutique_active->localisation_boutique}}"
-                            class="form-control validate"
-                          />
-                        </div>
-                        <input type="hidden" name="id" value="{{$boutique_active->id}}">
-                  </div>
-
-              </div>
-              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                <div class="tm-product-img-dummy mx-auto" onclick="document.getElementById('fileInput').click();" style="cursor:pointer;">
-                    <img id="previewImage" src="{{asset('img/'.$boutique_active->logo_boutique)}}" alt="Image à remplacer"
-                         style="width: 100%; height: 100%; object-fit: cover;" />
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block">
+                        <h2 class="tm-block-title"> Meilleurs produits </h2>
+                        <ul>
+                            @foreach ($topProduits as $produit)
+                            <li style="color: white">{{ $produit->nom_produit }} - {{ number_format($produit->total_vendu, 0, ',', ' ') }} FCFA</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-                <div class="custom-file mt-3 mb-3">
-                    <input id="fileInput" name="logo_boutique" type="file" accept="image/*" style="display:none;" onchange="previewFile()" />
+                <div class="col-12 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                        <h2 class="tm-block-title"> Revenus Par Mois </h2>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"> Mois </th>
+                                    <th scope="col"> chiffre d'affaires </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($ventesParMois as $vente )
+                                <tr>
+                                    <td style="color: white">
+                                        {{ \Carbon\Carbon::createFromFormat('Y-m', $vente->mois)->translatedFormat('F Y') }}
+                                    </td>
+                                    <td style="color: white">{{ number_format($vente->total_mensuel, 0, ',', ' ') }} FCFA</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-              </div>
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase"> Modifier boutique </button>
-              </div>
-            </form>
             </div>
-          </div>
         </div>
-      </div>
+        @include('footer')
     </div>
-    @include('footer')
+
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/Chart.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script>
-       function previewFile() {
-               var fileInput = document.getElementById('fileInput');
-               var previewImage = document.getElementById('previewImage');
+    <script src="js/tooplate-scripts.js"></script>
+</body>
 
-               var file = fileInput.files[0];
-               var reader = new FileReader();
-
-               reader.onloadend = function () {
-                   previewImage.src = reader.result;
-               }
-
-               if (file) {
-                   reader.readAsDataURL(file);
-               }
-           }
-
-           function triggerFileInput() {
-               document.getElementById('fileInput').click();
-           }
-
-   </script>
-  </body>
 </html>
-

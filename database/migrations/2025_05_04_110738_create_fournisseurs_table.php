@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('fournisseurs', function (Blueprint $table) {
+            $table->id();
             $table->string('nom_fournisseur')->unique();
             $table->string('email_fournisseur')->unique();
             $table->string('contact_fournisseur')->unique();
@@ -21,6 +22,7 @@ return new class extends Migration
 
             $table->foreign('nom_gestionnaire')->references('name')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('nom_boutique')->references('nom_boutique')->on('boutiques')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

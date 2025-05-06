@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title> Modifier boutique </title>
+    <title> CAMES STORE </title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('css/fontawesome.min.css')}}" />
     <link rel="stylesheet" href="{{asset('jquery-ui-datepicker/jquery-ui.min.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/vente.css')}}">
     <link rel="stylesheet" href="{{asset('css/templatemo-style.css')}}">
   </head>
 
@@ -58,7 +59,7 @@
 
                      <li class="nav-item dropdown">
                         <a
-                        class="nav-link  dropdown-toggle"
+                        class="nav-link active dropdown-toggle"
                         href="#"
                         id="navbarDropdown"
                         role="button"
@@ -119,7 +120,7 @@
                       </li>
                       <li class="nav-item dropdown">
                         <a
-                          class="nav-link active dropdown-toggle"
+                          class="nav-link  dropdown-toggle"
                           href="#"
                           id="navbarDropdown"
                           role="button"
@@ -146,17 +147,17 @@
             @endauth
         </div>
     </nav>
-    <div class="container tm-mt-big tm-mb-big">
-      <div class="row">
-        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
-          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-            <div class="row">
-              <div class="col-12">
-                <h2 class="tm-block-title d-inline-block"> Modifier Boutique </h2>
-              </div>
+  <div class="container tm-mt-big tm-mb-big">
+    <div class="row">
+      <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+          <div class="row">
+            <div class="col-12">
+              <h2 class="tm-block-title d-inline-block"> Ajouter Fournisseur  </h2>
             </div>
-            <div class="row tm-edit-product-row">
-              <div class="col-xl-6 col-lg-6 col-md-12">
+          </div>
+          <div class="row tm-edit-product-row">
+            <div class="col-xl-6 col-lg-6 col-md-12">
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <strong>Oups !</strong> Veuillez corriger les erreurs ci-dessous :
@@ -167,127 +168,81 @@
                     </ul>
                 </div>
                 @endif
-                @if (session('updateBoutique'))
-                <p style="color:orange"> {{session('updateBoutique')}}</p>
-                @endif
-                <form action="/boutique_edit" method="post" enctype="multipart/form-data" class="tm-edit-product-form">
-                    @csrf
-                  <div class="form-group mb-3">
-                    <label
-                      for="name"
-                      > Nom Boutique
-                    </label>
-                    <input
-                      id="nom_boutique"
-                      name="nom_boutique"
-                      type="text"
-                      value="{{$boutique_active->nom_boutique}}"
-                      class="form-control validate"
-                    />
-                  </div>
-                  <div class="form-group mb-3">
-                    <label
-                      for="name"
-                      > Email Boutique
-                    </label>
-                    <input
-                      id="email_boutique"
-                      name="email_boutique"
-                      type="text"
-                      value="{{$boutique_active->email_boutique}}"
-                      class="form-control validate"
-                    />
-                  </div>
-
-                  <div class="form-group mb-3">
-                    <label
-                      for="name"
-                      > Site web
-                    </label>
-                    <input
-                      id="site_web_boutique"
-                      name="site_web_boutique"
-                      type="text"
-                      value="{{$boutique_active->site_web_boutique}}"
-                      class="form-control validate"
-                    />
-                  </div>
-
-                  <div class="row">
-                      <div class="form-group mb-3 col-xs-12 col-sm-6">
-                          <label
-                            for="contact_boutique"
-                            > contact boutique
-                          </label>
-                          <input
-                            id="contact_boutique"
-                            name="contact_boutique"
-                            type="text"
-                            value="{{$boutique_active->contact_boutique}}"
-                            class="form-control validate"
-                          />
-                        </div>
-                        <div class="form-group mb-3 col-xs-12 col-sm-6">
-                          <label
-                            for="stock"
-                            > localisation boutique
-                          </label>
-                          <input
-                            id="localisation_boutique"
-                            name="localisation_boutique"
-                            type="text"
-                            value="{{$boutique_active->localisation_boutique}}"
-                            class="form-control validate"
-                          />
-                        </div>
-                        <input type="hidden" name="id" value="{{$boutique_active->id}}">
-                  </div>
-
-              </div>
-              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                <div class="tm-product-img-dummy mx-auto" onclick="document.getElementById('fileInput').click();" style="cursor:pointer;">
-                    <img id="previewImage" src="{{asset('img/'.$boutique_active->logo_boutique)}}" alt="Image à remplacer"
-                         style="width: 100%; height: 100%; object-fit: cover;" />
+              <form action="/update_fournisseurs" method="post" class="tm-edit-product-form">
+                  @csrf
+                <div class="form-group mb-3">
+                  <label
+                    for="name"
+                    >Nom Fournisseur
+                  </label>
+                  <input
+                    id="nom"
+                    name="nom_fournisseur"
+                    type="text"
+                    value="{{$fournisseur->nom_fournisseur}}"
+                    class="form-control validate"
+                    required
+                  />
                 </div>
-                <div class="custom-file mt-3 mb-3">
-                    <input id="fileInput" name="logo_boutique" type="file" accept="image/*" style="display:none;" onchange="previewFile()" />
+                <div class="form-group mb-3">
+                  <label
+                    for="name"
+                    >Email
+                  </label>
+                  <input
+                    id="email"
+                    name="email_fournisseur"
+                    type="email"
+                    value="{{$fournisseur->email_fournisseur}}"
+                    class="form-control validate"
+                    required
+                  />
                 </div>
-              </div>
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase"> Modifier boutique </button>
-              </div>
-            </form>
+
             </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+              <div class="form-group mb-3">
+                  <label
+                    for="pays"
+                    > pays
+                  </label>
+                  <input
+                    id="pays"
+                    name="pays"
+                    value="{{$fournisseur->pays}}"
+                    class="form-control validate"
+                    required
+                  />
+              </div>
+              <div class="form-group mb-3">
+                  <label
+                    for="contact"
+                    > contact
+                  </label>
+                  <input
+                    id="contact"
+                    name="contact_fournisseur"
+                    type="tel"
+                    value="{{$fournisseur->contact_fournisseur}}"
+                    class="form-control validate"
+                    required
+                  />
+
+                  <input type="hidden" name="id" id="id" value="{{$fournisseur->id}}">
+              </div>
+            </div>
+            <div class="col-12">
+              <input type="submit" class="btn btn-primary btn-block text-uppercase" name="save" value="modifiez le fournisseur" >
+            </div>
+          </form>
           </div>
         </div>
       </div>
     </div>
-    @include('footer')
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script>
-       function previewFile() {
-               var fileInput = document.getElementById('fileInput');
-               var previewImage = document.getElementById('previewImage');
-
-               var file = fileInput.files[0];
-               var reader = new FileReader();
-
-               reader.onloadend = function () {
-                   previewImage.src = reader.result;
-               }
-
-               if (file) {
-                   reader.readAsDataURL(file);
-               }
-           }
-
-           function triggerFileInput() {
-               document.getElementById('fileInput').click();
-           }
-
-   </script>
-  </body>
+  </div>
+ @include('footer')
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
 </html>
-

@@ -4,15 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title> Modifier Produits </title>
+    <title> CAMES STORE </title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
     />
-    <link rel="stylesheet" href="css/fontawesome.min.css" />
-    <link rel="stylesheet" href="jquery-ui-datepicker/jquery-ui.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="{{asset('css/fontawesome.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('jquery-ui-datepicker/jquery-ui.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/vente.css')}}">
+    <link rel="stylesheet" href="{{asset('css/templatemo-style.css')}}">
   </head>
 
   <body>
@@ -182,7 +183,7 @@
                       </li>
                       <li class="nav-item dropdown">
                         <a
-                        class="nav-link active dropdown-toggle"
+                        class="nav-link  dropdown-toggle"
                         href="#"
                         id="navbarDropdown"
                         role="button"
@@ -195,7 +196,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{url('approvisionnement')}}"> <i class="fas fa-plus"></i> reapprovisionner </a>
-                        <a class="dropdown-item" href="{{url('rap_approvisionnement')}}"> <i class="fas fa-file-alt"></i> Rapport reapprovisionnements </a>
+                        <a class="dropdown-item" href="{{url('rap_approvisionnements')}}"> <i class="fas fa-file-alt"></i> Rapport reapprovisionnements </a>
                         </div>
                      </li>
                       <li class="nav-item dropdown">
@@ -337,63 +338,105 @@
             @endauth
         </div>
     </nav>
-    <div class="container mt-5">
-      <div class="row tm-content-row">
-        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
-          <div class="tm-bg-primary-dark tm-block tm-block-products">
-            <div class="tm-product-table-container">
-              @if (session('gestionnaires_success'))
-                <p style="color:orange"> {{session('gestionnaires_success')}}</p>
-              @endif
-              @if (session('update_gestionnaire'))
-              <p style="color:orange"> {{session('update_gestionnaire')}}</p>
-              @endif
-              @if (session('delete_gestionnaire'))
-              <p style="color:orange"> {{session('delete_gestionnaire')}}</p>
-              @endif
-              <table class="table table-hover tm-table-small tm-product-table">
-                <thead>
-                  <tr>
-                    <th scope="col">&nbsp;</th>
-                    <th scope="col"> produit   </th>
-                    <th scope="col">  quantite      </th>
-                    <th scope="col"> fournisseur </th>
-                    <th scope="col"> total </th>
-                    <th scope="col"> date </th>
-                    <th scope="col"> status </th>
-                    <th scope="col">&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    @foreach ($approvisionnement as $approv )
-                    <tr>
-                        <th scope="row"><input type="checkbox" /></th>
-                        <td class="tm-product-name"> {{$approv->nom_produit}} </td>
-                        <td> {{$approv->qte_commandee}} </td>
-                        <td> {{$approv->nom_fournisseur}} </td>
-                        <td> {{$approv->montant_total}}</td>
-                        <td> {{$approv->date_reapprovisionnement}} </td>
-                        <td> {{$approv->status}} </td>
-                        <td>
-                          <a href="/delete_approvisionnement/{{$approv->id}}" class="tm-product-delete-link">
-                            <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                          </a>
-                          <a href="/update_approvisionnement/{{$approv->id}}" class="tm-product-delete-link">
-                            <i class="fas fa-edit tm-product-delete-icon"></i>
-                          </a>
-                        </td>
-                      </tr>
-                    @endforeach
-                </tbody>
-              </table>
+  <div class="container tm-mt-big tm-mb-big">
+    <div class="row">
+      <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+          <div class="row">
+            <div class="col-12">
+              <h2 class="tm-block-title d-inline-block"> Effectuer un reapprovisionnement </h2>
             </div>
+          </div>
+          <div class="row tm-edit-product-row">
+            <div class="col-xl-6 col-lg-6 col-md-12">
+              <form action="/add_reapprovisionnement" method="post" class="tm-edit-product-form">
+                  @csrf
+                <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      > nom_produit </label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category"  name="nom_produit"
+                    >
+                      <option selected> choisissez un produit </option>
+                      @foreach ($produit as $prod)
+                      <option value="{{$prod->nom_produit}}" > {{$prod->nom_produit}}</option>
+                      @endforeach
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                  <label
+                    for="name"
+                    > quantité ajoutée
+                  </label>
+                  <input
+                    id=""
+                    name="qte_commandee"
+                    type="number"
+                    class="form-control validate"
+                    required
+                  />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label
+                      for="category"
+                      > fournisseur </label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category"  name="nom_fournisseur"
+                    >
+                      <option selected> choisissez un fournisseur </option>
+                      @foreach ($fournisseurs as $fourni)
+                      <option value="{{$fourni->nom_fournisseur}}" > {{$fourni->nom_fournisseur}}</option>
+                      @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+              <div class="form-group mb-3">
+                  <label
+                    for=""
+                    > date reapprovisionnement
+                  </label>
+                  <input
+                    id="date_reapprovisionnement"
+                    name="date_reapprovisionnement"
+                    type="date"
+                    class="form-control validate"
+                    required
+                  />
+              </div>
+              <div class="form-group mb-3">
+                  <label
+                    for="montant_total"
+                    > montant total
+                  </label>
+                  <input
+                    id="montant_total"
+                    name="montant_total"
+                    type="number"
+                    class="form-control validate"
+                    required
+                  />
+              </div>
+            </div>
+            <div class="col-12">
+              <input type="submit" class="btn btn-primary btn-block text-uppercase" name="save" value="enregistrez le reapprovisionnement" >
+            </div>
+          </form>
           </div>
         </div>
       </div>
     </div>
-    @include('footer')
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script>
-  </body>
+  </div>
+ @include('footer')
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
 </html>
+

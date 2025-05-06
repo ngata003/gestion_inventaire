@@ -39,7 +39,7 @@
                 <ul class="navbar-nav mx-auto h-100">
                   <li class="nav-item dropdown">
                     <a
-                      class="nav-link  dropdown-toggle"
+                      class="nav-link active dropdown-toggle"
                       href="#"
                       id="navbarDropdown"
                       role="button"
@@ -55,6 +55,25 @@
                       <a class="dropdown-item" href="{{url('rapport_produits')}}"> <i class="fas fa-file-alt"></i> Rapport Produits </a>
                     </div>
                   </li>
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link  dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="fas fa-truck"></i>
+                      <span> Fournisseurs <i class="fas fa-angle-down"></i> </span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{{url('fournisseurs')}}"> <i class="fas fa-plus"></i> Ajouter un fournisseur </a>
+                      <a class="dropdown-item" href="{{url('rapport_fournisseurs')}}"> <i class="fas fa-file-alt"></i> Rapport fournisseurs </a>
+                      <a class="dropdown-item" href="{{url('approvisionnement')}}"> <i class="fas fa-plus"></i> reapprovisionner </a>
+                      <a class="dropdown-item" href="{{url('rap_approvisionnement')}}"> <i class="fas fa-file-alt"></i> Rapport reapprovisionnements </a>
+                    </div>
                   </li>
                   <li class="nav-item dropdown">
                     <a
@@ -98,7 +117,7 @@
                   </li>
                   <li class="nav-item dropdown">
                     <a
-                      class="nav-link active dropdown-toggle"
+                      class="nav-link  dropdown-toggle"
                       href="#"
                       id="navbarDropdown"
                       role="button"
@@ -112,6 +131,12 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="{{url('myBoutique')}}"> <i class="fas fa-edit"></i> modifier ma boutique </a>
                     </div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="statistiques">
+                        <i class="fas fa-chart-line"></i>
+                        statistiques
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -137,7 +162,7 @@
                 <ul class="navbar-nav mx-auto h-100">
                   <li class="nav-item dropdown">
                     <a
-                      class="nav-link  dropdown-toggle"
+                      class="nav-link active  dropdown-toggle"
                       href="#"
                       id="navbarDropdown"
                       role="button"
@@ -153,6 +178,23 @@
                       <a class="dropdown-item" href="{{url('rapport_produits')}}"> <i class="fas fa-file-alt"></i> Rapport Produits </a>
                     </div>
                   </li>
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link  dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="fas fa-truck"></i>
+                      <span> Fournisseurs <i class="fas fa-angle-down"></i> </span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{{url('approvisionnement')}}"> <i class="fas fa-plus"></i> reapprovisionner </a>
+                      <a class="dropdown-item" href="{{url('rap_approvisionnement')}}"> <i class="fas fa-file-alt"></i> Rapport reapprovisionnements </a>
+                    </div>
                   </li>
                   <li class="nav-item dropdown">
                     <a
@@ -215,7 +257,7 @@
                 <ul class="navbar-nav mx-auto h-100">
                   <li class="nav-item dropdown">
                     <a
-                      class="nav-link  dropdown-toggle"
+                      class="nav-link active  dropdown-toggle"
                       href="#"
                       id="navbarDropdown"
                       role="button"
@@ -231,6 +273,23 @@
                       <a class="dropdown-item" href="{{url('rapport_produits')}}"> <i class="fas fa-file-alt"></i> Rapport Produits </a>
                     </div>
                   </li>
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link  dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="fas fa-truck"></i>
+                      <span> Fournisseurs <i class="fas fa-angle-down"></i> </span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{{url('approvisionnement')}}"> <i class="fas fa-plus"></i> reapprovisionner </a>
+                      <a class="dropdown-item" href="{{url('rap_approvisionnement')}}"> <i class="fas fa-file-alt"></i> Rapport reapprovisionnements </a>
+                    </div>
                   </li>
                   <li class="nav-item dropdown">
                     <a

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\BoutiqueController;
+use App\Http\Controllers\FournisseurController;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\ReapprovisionnementController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Vente_detailsController;
 use App\Models\Ventes_details;
@@ -40,6 +42,17 @@ Route::get('/voir_facture/{id}',[Vente_detailsController::class,'voir_factures']
 Route::get('/delete_gestionnaire/{id}',[UserController::class,'deleteGestionnaires'])->middleware('role:admin');
 Route::get('/delete_ventes/{id}',[Vente_detailsController::class,'deleteVente'])->middleware('role:admin,vendeur,magasinier');
 Route::get('/delete_produit/{id}',[produitController::class,'deleteProduits'])->middleware('role:admin,vendeur,magasinier');
+Route::get('/fournisseurs',function(){ return view('fournisseurs.ajouter_fournisseurs');})->middleware('role:admin');
+Route::get('/approvisionnement', [ReapprovisionnementController::class,'appro_view'])->middleware('role:admin,vendeur,magasinier');
+Route::get('/rap_approvisionnement', [ReapprovisionnementController::class,'approv_view'])->middleware('role:admin,vendeur,magasinier');
+Route::get('/rapport_fournisseurs',[FournisseurController::class,'rapport_fournisseurs'])->middleware('role:admin');
+Route::get('/delete_fournisseurs/{id}', [FournisseurController::class,'deleteFournisseur'])->middleware('role:admin');
+Route::get('/update_fournisseurs/{id}', [FournisseurController::class,'UpdateFournisseur_view'])->middleware('role:admin');
+Route::get('/research_fournisseurs',[FournisseurController::class,'result_search_fournisseurs'])->middleware('role:admin');
+Route::get('/update_reapprovisionnement/{id}', [ReapprovisionnementController::class,'update_reapprovisionnement_view'])->middleware('role:admin,vendeur,magasinier');
+Route::get('/delete_reapprovisionnement/{id}', [ReapprovisionnementController::class,'delete_reapprovisionnement'])->middleware('role:admin,magasinier,vendeur');
+Route::get('/search_approv',[ReapprovisionnementController::class,'search_approv'])->middleware('role:admin, vendeur,magasinier');
+Route::get('/statistiques',[ReapprovisionnementController::class,'statistics_view'])->middleware('role:admin');
 
 Route::post('/inscription_code', [UserController::class,'inscription_code']);
 Route::post('/connexion_code', [UserController::class,'connexion_code']);
@@ -52,4 +65,7 @@ Route::post('/boutique_edit',[boutiqueController::class,'modifier_boutique']);
 Route::post('/get_product_details',[produitController::class,'get_product_details']);
 Route::post('/modifier_profil', [UserController::class,'modifier_profil']);
 Route::post('/add_ventes',[Vente_detailsController::class,'addVentes']);
-
+Route::post('/add_fournisseurs' , [FournisseurController::class,'add_fournisseurs']);
+Route::post('/update_fournisseurs' , [FournisseurController::class,'updateFournisseur']);
+Route::post('/add_reapprovisionnement',[ReapprovisionnementController::class,'add_reapprovisionnement'])->middleware('role:admin,vendeur,magasinier');
+Route::post('/update_reapprovisionnement',[ReapprovisionnementController::class,'update_reapprovisionnement']);

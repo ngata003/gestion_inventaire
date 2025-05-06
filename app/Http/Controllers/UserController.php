@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Mail\passwordGestionnaires;
+use App\Models\Boutique;
 use App\Models\User;
 use Auth;
+use Hash;
 use Illuminate\Http\Request;
 use Mail;
 use Session;
+use Str;
 
 class UserController extends Controller
 {

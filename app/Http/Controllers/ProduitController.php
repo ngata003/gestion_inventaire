@@ -62,10 +62,18 @@ class ProduitController extends Controller
 
     public function Allproduct() {
         $boutique = Session::get('boutique_active');
+        $user = auth::user();
 
-        $product = Produit::where('nom_boutique',$boutique->nom_boutique)->get();
+        if ($user->type == 'admin') {
+            $product = Produit::where('nom_boutique',$boutique->nom_boutique)->get();
+            return view('produits.rap_produits', compact('product'));
+        }
 
-        return view('produits.rap_produits', compact('product'));
+        else if ($user->type == 'gestionnaire') {
+            $product = Produit::where('nom_boutique',$boutique->nom_boutique)->where('nom_gestionnaire',$user->name)->get();
+            return view('produits.rap_produits', compact('product'));
+        }
+
 
     }
 

@@ -55,6 +55,25 @@
                           <a class="dropdown-item" href="{{url('rapport_produits')}}"> <i class="fas fa-file-alt"></i> Rapport Produits </a>
                         </div>
                       </li>
+                      <li class="nav-item dropdown">
+                        <a
+                          class="nav-link  dropdown-toggle"
+                          href="#"
+                          id="navbarDropdown"
+                          role="button"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          <i class="fas fa-truck"></i>
+                          <span> Fournisseurs <i class="fas fa-angle-down"></i> </span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="{{url('fournisseurs')}}"> <i class="fas fa-plus"></i> Ajouter un fournisseur </a>
+                          <a class="dropdown-item" href="{{url('rapport_fournisseurs')}}"> <i class="fas fa-file-alt"></i> Rapport fournisseurs </a>
+                          <a class="dropdown-item" href="{{url('approvisionnement')}}"> <i class="fas fa-plus"></i> reapprovisionner </a>
+                          <a class="dropdown-item" href="{{url('rap_approvisionnement')}}"> <i class="fas fa-file-alt"></i> Rapport reapprovisionnements </a>
+                        </div>
                       </li>
                       <li class="nav-item dropdown">
                         <a
@@ -90,7 +109,7 @@
                           <span> comptes <i class="fas fa-angle-down"></i> </span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{url('utilisateurs')}}"> <i class="fas fa-insert"></i> ajouter un utilisateur </a>
+                          <a class="dropdown-item" href="{{url('utilisateurs')}}"> <i class="fas fa-plus"></i> ajouter un utilisateur </a>
                           <a class="dropdown-item" href="{{url('myProfil')}}"> <i class="fas fa-edit"></i> modifier mon profil </a>
                           <a class="dropdown-item" href="{{url('rapport_gestionnaires')}}"> <i class="fas fa-user"></i> Tous les employés </a>
                           <a class="dropdown-item" href="{{url('deconnexion')}}"> <i class="fas fa-sign-out-alt"></i> deconnexion </a>
@@ -113,9 +132,16 @@
                           <a class="dropdown-item" href="{{url('myBoutique')}}"> <i class="fas fa-edit"></i> modifier ma boutique </a>
                         </div>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link " href="statistiques">
+                            <i class="fas fa-chart-line"></i>
+                            statistiques
+                        </a>
+                      </li>
                     </ul>
                   </div>
                 @endif
+
                 @if (Auth::user()->role == 'magasinier')
                 <a class="navbar-brand" href="{{url('myProfil')}}">
                     <h1 class="tm-site-title mb-0">POINT DE VENTE </h1>
@@ -152,6 +178,23 @@
                           <a class="dropdown-item" href="{{url('rapport_produits')}}"> <i class="fas fa-file-alt"></i> Rapport Produits </a>
                         </div>
                       </li>
+                      <li class="nav-item dropdown">
+                        <a
+                          class="nav-link  dropdown-toggle"
+                          href="#"
+                          id="navbarDropdown"
+                          role="button"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          <i class="fas fa-truck"></i>
+                          <span> Fournisseurs <i class="fas fa-angle-down"></i> </span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="{{url('approvisionnement')}}"> <i class="fas fa-plus"></i> reapprovisionner </a>
+                          <a class="dropdown-item" href="{{url('rap_approvisionnement')}}"> <i class="fas fa-file-alt"></i> Rapport reapprovisionnements </a>
+                        </div>
                       </li>
                       <li class="nav-item dropdown">
                         <a
@@ -231,47 +274,6 @@
                           <a class="dropdown-item" href="{{url('rapport_produits')}}"> <i class="fas fa-file-alt"></i> Rapport Produits </a>
                         </div>
                       </li>
-                      </li>
-                      <li class="nav-item dropdown">
-                        <a
-                          class="nav-link dropdown-toggle"
-                          href="#"
-                          id="navbarDropdown"
-                          role="button"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <i class="fas fa-file"></i>
-                          <span> Ventes  <i class="fas fa-angle-down"></i> </span>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{url('vendre')}}"> <i class="fas fa-plus"></i> ajouter une vente </a>
-                          <a class="dropdown-item" href="{{url('rap_ventes')}}"> <i class="fas fa-file-alt"></i> Rapport ventes </a>
-                        </div>
-                      </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                      <li class="nav-item dropdown">
-                        <a
-                          class="nav-link active  dropdown-toggle"
-                          href="#"
-                          id="navbarDropdown"
-                          role="button"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <i class="fas fa-user"></i>
-                          <span> comptes <i class="fas fa-angle-down"></i> </span>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{url('utilisateurs')}}"> <i class="fas fa-insert"></i> ajouter un utilisateur </a>
-                          <a class="dropdown-item" href="{{url('myProfil')}}"> <i class="fas fa-edit"></i> modifier mon profil </a>
-                          <a class="dropdown-item" href="{{url('rapport_gestionnaires')}}"> <i class="fas fa-user"></i> Tous les employés </a>
-                          <a class="dropdown-item" href="{{url('deconnexion')}}"> <i class="fas fa-sign-out-alt"></i> deconnexion </a>
-                        </div>
-                      </li>
                       <li class="nav-item dropdown">
                         <a
                           class="nav-link  dropdown-toggle"
@@ -282,52 +284,13 @@
                           aria-haspopup="true"
                           aria-expanded="false"
                         >
-                          <i class="fas fa-home"></i>
-                          <span>  @if (isset($boutique_active)){{$boutique_active->nom_boutique}}@endif  <i class="fas fa-angle-down"></i> </span>
+                          <i class="fas fa-truck"></i>
+                          <span> Fournisseurs <i class="fas fa-angle-down"></i> </span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{url('myBoutique')}}"> <i class="fas fa-edit"></i> modifier ma boutique </a>
+                          <a class="dropdown-item" href="{{url('approvisionnement')}}"> <i class="fas fa-plus"></i> reapprovisionner </a>
+                          <a class="dropdown-item" href="{{url('rap_approvisionnement')}}"> <i class="fas fa-file-alt"></i> Rapport reapprovisionnements </a>
                         </div>
-                      </li>
-                    </ul>
-                  </div>
-                @endif
-                @if (Auth::user()->role == 'magasinier')
-                <a class="navbar-brand" href="{{url('myProfil')}}">
-                    <h1 class="tm-site-title mb-0">POINT DE VENTE </h1>
-                  </a>
-                  <button
-                    class="navbar-toggler ml-auto mr-0"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                  >
-                    <i class="fas fa-bars tm-nav-icon"></i>
-                  </button>
-
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto h-100">
-                      <li class="nav-item dropdown">
-                        <a
-                          class="nav-link  dropdown-toggle"
-                          href="#"
-                          id="navbarDropdown"
-                          role="button"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <i class="fas fa-shopping-cart"></i>
-                          <span> Produits <i class="fas fa-angle-down"></i> </span>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{url('produits')}}"> <i class="fas fa-plus"></i> Ajouter un produit </a>
-                          <a class="dropdown-item" href="{{url('rapport_produits')}}"> <i class="fas fa-file-alt"></i> Rapport Produits </a>
-                        </div>
-                      </li>
                       </li>
                       <li class="nav-item dropdown">
                         <a
@@ -371,7 +334,6 @@
                   </div>
                 @endif
             @endauth
-
         </div>
     </nav>
     <div class="container tm-mt-big tm-mb-big">
