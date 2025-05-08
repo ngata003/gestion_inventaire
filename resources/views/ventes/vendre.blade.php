@@ -463,7 +463,7 @@
         event.preventDefault();
 
         var num = document.getElementById('numRows');
-        num.value = w;
+
 
         var form = document.getElementById('monFormulaire');
         var newDiv = document.createElement('div');
@@ -493,6 +493,7 @@
         addButton.parentNode.insertBefore(newDiv, addButton);
 
         w++; // augmenter j après l'ajout
+        num.value = w;
         v++;
     }
 </script>
